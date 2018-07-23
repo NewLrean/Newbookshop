@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Newbookshop</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <filter>  
+    <filter-name>EncodingFilter</filter-name>  
+    <filter-class>com.book.filter.EncodingFilter</filter-class><!--全路径 从根包开始一直到类名--> 
+    
+  </filter>  
+  <filter-mapping>  
+    <filter-name>EncodingFilter</filter-name>  
+    <url-pattern>/*</url-pattern> <!--*即为过滤所有-->  
+  </filter-mapping>  
+  
+  <servlet><!--servlet 类路径 -->
+  	<servlet-name>Userservlet</servlet-name>
+  	<servlet-class>com.book.servlet.Userservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Bookservlet</servlet-name>
+    <servlet-class>com.book.servlet.Bookservlet</servlet-class>
+  </servlet>
+
+  
+  <servlet-mapping> <!-- servlet 映射配置 -->
+  	<servlet-name>Userservlet</servlet-name>
+  	<url-pattern>/Userservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Bookservlet</servlet-name>
+    <url-pattern>/Bookservlet</url-pattern>
+  </servlet-mapping>
+  
+  <resource-ref>
+      <description>mysql数据库连接池</description>
+      <res-ref-name>jdbc/mysqlds</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+      <res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+</web-app>
